@@ -5,3 +5,4 @@ gunicorn
 requests
 bs4
 dj-database-url
+python-dotenv
