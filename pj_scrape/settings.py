@@ -82,7 +82,13 @@ WSGI_APPLICATION = 'pj_scrape.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASES = {
+from socket import gethostname
+hostname = gethostname()
+
+if "COMPUTER-NAME" in hostname:
+    # デバッグ環境
+    # DEBUG = True 
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
@@ -91,6 +97,18 @@ DATABASES = {
         'HOST': 'db',
         'PORT': 5432,
     }
+    }
+    ALLOWED_HOSTS = ['*'] 
+else:
+    # 本番環境
+    # DEBUG = False
+    import dj_database_url
+    db_from_env = dj_database_url.config()
+    DATABASES = {
+        'default': dj_database_url.config()
+    }
+    ALLOWED_HOSTS = ['*']
+
 }
 
 

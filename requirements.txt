@@ -4,3 +4,4 @@ whitenoise
 gunicorn
 requests
 bs4
+dj-database-url
