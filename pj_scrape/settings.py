@@ -82,15 +82,58 @@ WSGI_APPLICATION = 'pj_scrape.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+# from socket import gethostname
+# hostname = gethostname()
+
+# if "COMPUTER-NAME" in hostname:
+#     # デバッグ環境
+#     # DEBUG = True 
+#     DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'db',
+#         'PORT': 5432,
+#     }
+#     }
+ 
+# else:
+#     # 本番環境
+#     # DEBUG = False
+#     import dj_database_url
+#     from dotenv import (
+#         find_dotenv,
+#         load_dotenv,
+#     )
+#     load_dotenv(find_dotenv())
+#     DATABASES = {
+#         'default': dj_database_url.config(conn_max_age=600),
+#     }
+
+# デバッグ環境
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'db',
+#         'PORT': 5432,
+#     }
+# }
+# 本番環境
+
+import dj_database_url
+from dotenv import (
+        find_dotenv,
+        load_dotenv,
+)
+load_dotenv(find_dotenv())
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
-    }
+        'default': dj_database_url.config(conn_max_age=600),
 }
 
 
